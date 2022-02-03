@@ -21,7 +21,7 @@ export const event: Event = {
                     .toLowerCase();
                 let cmd = Bunny.commands.get(command) || Bunny.aliases.get(command)
                 if (cmd) {
-                    if (message.author.id !== `${OwnerID}`) {
+                    /*if (message.author.id !== `437308398845952001` || message.author.id !== `934202202644414484`) {
                         let CMDCooldownName = `${cmd.cooldown.name}`
                         let CMDCooldownTime = ms(`${cmd.cooldown.time}`)
                         let Cooldown = qdb.fetch(`${CMDCooldownName}${message.author.id}`)
@@ -45,7 +45,7 @@ export const event: Event = {
                         }
                         qdb.delete(`${CMDCooldownName}${message.author.id}`)
                         qdb.add(`${CMDCooldownName}${message.author.id}`, Date.now() + CMDCooldownTime)
-                    }
+                    }*/
                     (cmd as Command).run(Bunny, message, args)
                 }
             }

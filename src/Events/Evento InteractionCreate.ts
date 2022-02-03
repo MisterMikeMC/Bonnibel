@@ -5,10 +5,9 @@ export const event: Event = {
     name: 'interactionCreate',
     run: async (Bunny, interaction: Interaction) => {
         if (interaction.isCommand()) {
-            await interaction.deferReply();
             const SlashCommand = Bunny.slashcommands.get(interaction.commandName);
             if (!SlashCommand) {
-                interaction.followUp({
+                interaction.reply({
                     embeds: [
                         new MessageEmbed()
                             .setDescription(`❌ | Estas usando un comando invalido.`)
