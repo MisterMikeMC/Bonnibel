@@ -38,9 +38,6 @@ export default class Bunny extends Client {
                 properties: {
                     $browser: "Discord Android"
                 }
-            },
-            allowedMentions: {
-                repliedUser: false
             }
         });
     };

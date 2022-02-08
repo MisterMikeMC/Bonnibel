@@ -1,25 +1,26 @@
 import { MessageEmbed } from "discord.js";
-import { Command } from "../../../interfaces";
-export const command: Command = {
-    name: "suggestion",
-    aliases: ["sugerencia", "suggest"],
-    description: "Has una sugerencia para apoyar al servidor ^^",
-    syntaxis: "<Sugerencia>",
-    cooldown: {
-        name: "SuggestCooldown_",
-        time: "30m"
-    },
-    onlyOwner: false,
-    maintenance: false,
-    run: async (Bunny, message, args) => {
-        let SuggestMessage = args.join(' ')
+import { SlashCommandStructure } from "../../../SlashCommandsInterface/SlashCommandStructure";
+export default new SlashCommandStructure({
+    name: 'suggest',
+    description: 'Has un aporte para el servidore.',
+    options: [
+        {
+            name: 'suggest',
+            description: 'Escribe tu sugerencia.',
+            type: 'STRING',
+            required: true
+        }
+    ],
+    run: async ({ Bunny, interaction }) => {
+        let SuggestMessage = interaction.options.getString('suggest')
         if (!SuggestMessage) {
-            message.reply({
+            interaction.reply({
                 embeds: [
                     new MessageEmbed()
                         .setDescription("❌ | Necesitas escribir algo para sugerir.")
                         .setColor("#990000")
-                ]
+                ],
+                ephemeral: true
             })
             return;
         }
@@ -31,15 +32,22 @@ export const command: Command = {
                     .setImage("https://media.discordapp.net/attachments/929161270047936574/929593259154616340/247_sin_titulo_20220108223303.png")
                     .setColor("#BB86DC")
                     .setFooter({
-                        text: `Gracias ${message.author.tag} por la sugerencia.`,
-                        iconURL: `${message.author.displayAvatarURL({ dynamic: true })}`
+                        text: `Gracias ${interaction.user.tag} por la sugerencia.`,
+                        iconURL: `${interaction.user.displayAvatarURL({ dynamic: true })}`
                     })
                     .setTimestamp()
             ]
         }).then((SuggestPostMessage) => {
-            message.delete()
+            interaction.reply({
+                embeds: [
+                    new MessageEmbed()
+                        .setDescription("✅ | Sugerencia enviada.")
+                        .setColor("#009900")
+                ],
+                ephemeral: true
+            })
             SuggestPostMessage.react("<:x_check_nf2:930597239729029191>")
             SuggestPostMessage.react("<:xnf2:930597291260264449>")
         })
     }
-}
+})
