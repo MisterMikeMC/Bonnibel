@@ -1,4 +1,4 @@
-import { MessageEmbed } from "discord.js";
+import { BaseGuildTextChannel, MessageEmbed } from "discord.js";
 import { SlashCommandStructure } from "../../../SlashCommandsInterface/SlashCommandStructure";
 export default new SlashCommandStructure({
     name: 'suggest',
@@ -24,8 +24,8 @@ export default new SlashCommandStructure({
             })
             return;
         }
-        // @ts-ignore
-        Bunny.channels.cache.get('929538627539726376').send({
+        let ChannelForSendSuggest = Bunny.channels.resolve("929538627539726376") as BaseGuildTextChannel
+        ChannelForSendSuggest.send({
             embeds: [
                 new MessageEmbed()
                     .setDescription(`<:hear_4:930596428395454464> : ˚ ♡ ꒱ ᚑ ̇ ✦ ︶︶︶ ꒷︶ ꒦ ⊹ ︶ ꒷ ♡ ꒱\n\n<a:flecha_2:930646820584054836> ${SuggestMessage}\n\n<:hear_4:930596428395454464> ˚ ♡ ꒱ ᚑ ̇ ✦ ︶︶︶ ꒷︶ ꒦ ⊹ ︶ ꒷ ♡ ꒱`)

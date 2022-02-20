@@ -5,7 +5,8 @@ export const event: Event = {
         setInterval(() => {
             const Estados = [
                 { name: `Comiendo una zanahoria 🥕`, type: 1 },
-                { name: `Feliz ^^`, type: 1 }
+                { name: `Feliz ^^`, type: 1 },
+                { name: `Atendiendo Dolby Lolly Bunnie`, type: 1 }
             ]
             function presence() {
                 Bunny.user.setPresence({

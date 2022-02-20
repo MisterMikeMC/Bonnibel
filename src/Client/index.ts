@@ -16,6 +16,7 @@ export default class Bunny extends Client {
     public slashcommands: Collection<string, CommandType> = new Collection();
     public events: Collection<string, Event> = new Collection();
     public distubeevent: Collection<string, EventDistube> = new Collection();
+    public function: Collection<any, any> = new Collection();
     public snipe: Map<string, Snipe> = new Map();
     public distube: any;
     constructor() {
